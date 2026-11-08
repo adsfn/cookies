@@ -89,7 +89,7 @@ h1{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:clamp(2rem,6vw,3
 .dl,.dr{top:80svh;font:500 clamp(1.1rem,2.2vw,1.9rem)/1.15 Fraunces,Georgia,serif;text-transform:none;letter-spacing:0;color:var(--ink)}.dr{max-width:12ch;text-align:right}
 .dst{overflow-y:visible;overflow-x:clip}.dst::before{opacity:calc(.22*var(--cf,1))}.dc{width:min(135vw,960px);pointer-events:none}
 .dh{height:420svh}
-.dh h2{font-size:clamp(3.4rem,min(22vw,30svh),17.5rem);padding-top:clamp(90px,12svh,120px)}@media(max-width:699px){.dst::before{width:72vw}}
+.dh h2{font-size:clamp(3.4rem,min(22vw,30svh),17.5rem);padding-top:clamp(90px,12svh,120px)}@media(max-width:699px){.dst::before{width:104vw}}
 @media(max-width:699px){.dh h2{font-size:min(15vw,11svh)}}
 .dtop{background:none;transition:transform .6s cubic-bezier(.22,1,.36,1)}.detail.hd .dtop{transform:translateY(-120%)}.detail.past .dtop{background:var(--bg)}
 .ix{min-height:0;padding-top:9vh;padding-bottom:9vh}.it{min-height:210px}.nu b,.rcp b{font-size:clamp(2.2rem,4.5vw,3.6rem)}.nu,.rcp{gap:32px}.st{margin-top:32px;font-size:1.05rem;line-height:1.7}.dg{min-height:0}.do{min-height:0;padding:7vh 0 9vh}
@@ -132,6 +132,8 @@ a.brand{color:inherit;text-decoration:none;border-radius:6px;-webkit-tap-highlig
 .dl,.dr{top:calc(max(104px,15svh) + env(safe-area-inset-top,0px) + var(--fs,14vw)*.88 + 18px);translate:none;font-size:min(1rem,4.1vw);white-space:nowrap}
 .dr{max-width:none}
 }
+.stage canvas.gl3d:not(.glb){-webkit-mask-image:radial-gradient(circle at 50% 50%,#000 calc(var(--r0,9999px)*(1 - var(--m,0)*.25)),transparent calc(var(--r1,9999px)*(1 - var(--m,0)*.12)));mask-image:radial-gradient(circle at 50% 50%,#000 calc(var(--r0,9999px)*(1 - var(--m,0)*.25)),transparent calc(var(--r1,9999px)*(1 - var(--m,0)*.12)))}.stage canvas.glb{filter:blur(2.5px)}
+.rh{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 14px}.rh h4{margin:0!important}.sc{display:inline-flex;gap:4px;padding:4px;border:1px solid var(--line);border-radius:99px}.sc button{min-width:44px;height:34px;padding:0 10px;border:0;border-radius:99px;background:transparent;color:var(--ink);font:600 .85rem/1 'DM Sans',system-ui,sans-serif;font-variant-numeric:tabular-nums;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:background .2s,color .2s}.sc button[aria-checked=true]{background:var(--ink);color:var(--bg)}@media(hover:hover){.sc button:not([aria-checked=true]):hover{background:color-mix(in srgb,var(--ink) 10%,transparent)}}.sc button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}.ri li b,.rcp .mk-n{transition:opacity .18s ease}.ri ul.sw8 li b,.rcp.sw8 .mk-n,.sw.sw8 b,.sw.sw8 p{opacity:.25}.sw b,.sw p{transition:opacity .18s ease}.swn{text-transform:none;letter-spacing:.02em}.rnote{margin:-6px 0 14px;font-size:.85rem;color:var(--muted);min-height:1.2em}
 </style>
 </head>
 <body>
@@ -174,9 +176,10 @@ function svg(k,i){
 const track=$("track"),items=C.map((k,i)=>{const e=document.createElement("div");e.className="item";e.setAttribute("role","option");e.setAttribute("aria-label",k.n);e.innerHTML=svg(k,i);track.appendChild(e);return e});
 let pos=0,vel=0,target=null,drag=false,lx=0,moved=0,sp=220,active=-1,lt=0;
 let IW=200,R=null,SC=null,CAM=null,M=[],MX=-1e4,MY=-1e4,hov=-1,PX=0,PY=0,CO=matchMedia("(pointer:coarse)").matches&&!matchMedia("(prefers-reduced-motion:reduce)").matches,T0=matchMedia("(prefers-reduced-motion:reduce)").matches?-1e5:performance.now()+1100;
+let BL=null,BX=null,FB=0;
 if(window.THREE){try{
 const T3=THREE;R=new T3.WebGLRenderer({antialias:true,alpha:true});R.setPixelRatio(Math.min(devicePixelRatio||1,2));
-R.domElement.className='gl3d';$('stage').insertBefore(R.domElement,track);$('stage').classList.add('gl');
+R.domElement.className='gl3d';$('stage').insertBefore(R.domElement,track);$('stage').classList.add('gl');BL=document.createElement('canvas');BL.className='gl3d glb';BL.setAttribute('aria-hidden','true');$('stage').insertBefore(BL,R.domElement);BX=BL.getContext('2d');
 SC=new T3.Scene();CAM=new T3.OrthographicCamera(-1,1,1,-1,-2000,2000);
 SC.add(new T3.AmbientLight(0xffffff,.75));const L=new T3.DirectionalLight(0xffffff,.9);L.position.set(-.6,1,1.4);SC.add(L);
 const prof=[[0,.17],[.5,.18],[.8,.16],[.94,.11],[1,.04],[1,-.04],[.93,-.11],[.6,-.14],[0,-.14]].map(p=>new T3.Vector2(p[0],p[1]));
@@ -270,7 +273,7 @@ function size(){const w=innerWidth,stg=$("stage"),h=stg.clientHeight,br=stg.getB
   sp=Math.max(s0,iw*1.12);
   items.forEach(e=>e.style.setProperty("--w",iw+"px"));
   GLW.style.top=(h/2)+"px";IW=iw;
-  if(R){const sw=SW;R.setSize(sw,h,false);CAM.left=-sw/2;CAM.right=sw/2;CAM.top=h/2;CAM.bottom=-h/2;CAM.updateProjectionMatrix()}
+  if(R){const sw=SW;R.setSize(sw,h,false);CAM.left=-sw/2;CAM.right=sw/2;CAM.top=h/2;CAM.bottom=-h/2;CAM.updateProjectionMatrix();if(BL){BL.width=Math.max(1,R.domElement.width>>1);BL.height=Math.max(1,R.domElement.height>>1);R.domElement.style.setProperty('--r0',(iw*.66)+'px');R.domElement.style.setProperty('--r1',(iw*1.15)+'px')}}
   GLW.style.width=Math.min(iw*1.4,h-12)+"px"}
 function render(){
   items.forEach((e,i)=>{const d=wrap(i-pos),ad=Math.abs(d);
@@ -280,7 +283,7 @@ function render(){
     e.style.filter=`blur(${Math.min(ad,2.5)*1.1}px) brightness(${1-Math.min(ad,2.5)*.12})`;
     e.style.zIndex=100-Math.round(ad*10)}const sel=ad<.5;if(e._s!==sel){e._s=sel;e.setAttribute("aria-selected",sel)}
     if(R){const q=M[i];q.o.position.set(x+PX*sc*8,-(y+PY*sc*5),0);q.o.rotation.z=-rot*Math.PI/180;q.o.rotation.y=-d*.4+PX*.12;q.o.rotation.x=-PY*.07;q.o.scale.setScalar(IW/2*sc);const hv=!drag&&i===HOV;if(hv){q.s+=.003*DT;hov=i}else if(CO&&ad<.5&&!drag)q.s+=.003*DT;q.cx=x+PX*sc*8;q.cy=y+PY*sc*5;q.r=IW/2*sc;q.h+=((hv?1:0)-q.h)*ease(.12,DT);q.o.scale.setScalar(IW/2*sc*(1+.05*q.h));q.m.rotation.y=q.s;{const f=1-Math.min(ad,2.5)*.14;(q.mats||[q.mat]).forEach(m=>m.color.setHex(m.userData.b??0xffffff).multiplyScalar(f))}}});
-  if(R&&dOpen<0)R.render(SC,CAM);const a=((Math.round(pos)%n)+n)%n;if(a!==active){active=a;show(a)}}
+  if(R&&dOpen<0){R.render(SC,CAM);if(BX){BX.clearRect(0,0,BL.width,BL.height);BX.drawImage(R.domElement,0,0,BL.width,BL.height)}}const a=((Math.round(pos)%n)+n)%n;if(a!==active){active=a;show(a)}}
 function show(a){const k=C[a],b=$("info");b.classList.add("out");
   setTimeout(()=>{$("name").textContent=k.n;$("tag").textContent=k.t;
     $("pills").innerHTML=k.p.map(t=>`<span>${t}</span>`).join("");b.classList.remove("out")},active<0?0:180);
@@ -311,6 +314,7 @@ function loop(){
   const busy=NEED>0||pm||PX!==LS.px||PY!==LS.py||performance.now()<T0+1800||(HOV>-1&&!drag)||(CO&&!drag)||M.some(q=>q.h>.001&&q.h<.999);
   if(busy){hov=-1;render();if(NEED)NEED--}else hov=-1;
   if(mm||hov!==hp||hov>-1)updTip();
+  if(BL&&R){const s=Math.abs(pos-LS.p)/Math.max(DT,.001),tg=RM||!(s>0)?0:Math.min(1,s*14);FB+=(tg-FB)*ease(tg>FB?.35:.1,DT);if(Math.abs(tg-FB)<.004)FB=tg;if(FB!==LS.fb){LS.fb=FB;BL.style.filter='blur('+(2.5+FB*5).toFixed(2)+'px)';R.domElement.style.setProperty('--m',FB.toFixed(3))}}
   LS.p=pos;LS.px=PX;LS.py=PY;LS.mx=MX;LS.my=MY}
 const st=$("stage");
 st.addEventListener("pointerdown",e=>{drag=true;lx=e.clientX;moved=0;vel=0;target=null;st.setPointerCapture(e.pointerId)});
@@ -325,6 +329,44 @@ addEventListener("pointermove",e=>{if(e.pointerType==="touch"){MX=MY=-1e4;return
 $("next").onclick=()=>step(1);$("prev").onclick=()=>step(-1);
 const sl=n=>n.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const ch=n=>n.split('').map((c,j)=>c==='\n'?'<br>':c===' '?' ':`<span class='mc' aria-hidden='true'><i style='--j:${j}'>${c}</i></span>`).join('');
+/* recipe scaling: ½× – 3× batches */
+const SCS=[.5,1,2,3];let SCL=1;
+const FRC={'⅛':1/8,'¼':1/4,'⅓':1/3,'⅜':3/8,'½':1/2,'⅝':5/8,'⅔':2/3,'¾':3/4,'⅞':7/8};
+const pn=t=>{const m=String(t).match(/^(\d+)?([⅛¼⅓⅜½⅝⅔¾⅞])?$/);return m&&(m[1]||m[2])?(+(m[1]||0))+(m[2]?FRC[m[2]]:0):NaN};
+/* nearest kitchen fraction; den = allowed fraction set */
+function fq(v,set){const w=Math.floor(v+1e-9),r=v-w;let b=0,bd=r,bc='';for(const[c,f]of Object.entries(FRC)){if(!set.includes(c))continue;const d=Math.abs(r-f);if(d<bd-1e-9){bd=d;b=f;bc=c}}if(Math.abs(1-r)<bd-1e-9)return String(w+1);return(w?w:'')+bc||'0'}
+const VU={cup:48,cups:48,tbsp:3,tsp:1};
+/* volumes in tsp → the way a cook would measure: nice cup fractions, cup + tbsp, tbsp or tsp */
+const NC=[0,1/4,1/3,1/2,2/3,3/4],cupTxt=c=>{const q=fq(c,'¼⅓½⅔¾');return q+' '+(pn(q)>1?'cups':'cup')};
+function vol(t,noCup){if(t<3-1e-9)return fq(Math.max(t,.125),'⅛¼½¾')+' tsp';const tb=Math.round(t/3*2)/2;
+ if(noCup||t<12-1e-9)return fq(tb,'½')+' tbsp';
+ const c=t/48,w=Math.floor(c+1e-9);let best=null;for(const f of NC){const d=Math.abs(c-(w+f))*48;if(d<=.75&&(best===null||d<best[1]))best=[w+f,d]}
+ if(Math.abs(c-(w+1))*48<=.75)return cupTxt(w+1);if(best&&best[0]>0)return cupTxt(best[0]);
+ if(t<24)return fq(tb,'½')+' tbsp';
+ let lo=w;for(const f of NC)if(w+f<=c+1e-9)lo=w+f;const rt=Math.round((t-lo*48)/3*2)/2;return rt>=.5?cupTxt(lo)+' + '+fq(rt,'½')+' tbsp':cupTxt(lo)}
+/* scale one amount part like "1½ cups", "200 g", "10", "1 pinch" */
+function sp1(part,s,noCup){const m=part.trim().match(/^(\d*[⅛¼⅓⅜½⅝⅔¾⅞]?)(?:\s+(.+))?$/);if(!m||!m[1])return part;const v=pn(m[1]),u=(m[2]||'').trim();if(isNaN(v))return part;const x=v*s;
+ if(VU[u])return vol(x*VU[u],noCup);
+ if(u==='g'||u==='ml'){const r=x<20?Math.round(x):Math.round(x/5)*5;return r+' '+u}
+ if(u==='pinch'||u==='pinches')return x<1?'1 small pinch':(Math.round(x)+(Math.round(x)>1?' pinches':' pinch'));
+ if(!u)return x<3?fq(x,'½'):String(Math.round(x));
+ return part}
+const scAmt=(a,s)=>s===1?a:a.split(' · ').map(seg=>seg.split(' + ').map((p,_,ps)=>sp1(p,s,ps.length>1)).join(' + ')).join(' · ');
+/* keep singular/plural right for counted items, and scale amounts written into a name */
+function scName(n,a,s){if(s===1)return n;const c=pn(a.split(' · ')[0].trim());n=n.replace(/(\d*[⅛¼⅓⅜½⅝⅔¾⅞]?) (tbsp|tsp)\b/g,(q,num,u)=>num?sp1(num+' '+u,s):q);
+ if(!isNaN(c)){const v=c*s;if(v>1)n=n.replace(/^(large egg|lemon)\b/,'$1s');else n=n.replace(/^(limes|ripe bananas)\b/,w=>w.slice(0,-1));if(v%1&&/^large egg/.test(n))n+=' (whisk it, then use half)'}return n}
+/* scale amounts written in swap text: "1 tbsp ground flax + 3 tbsp water", "1 large egg" */
+const scTxt=(t,s)=>s===1?t:t.replace(/(\d*[⅛¼⅓⅜½⅝⅔¾⅞]?) (tbsp|tsp)\b/g,(q,num,u)=>num?sp1(num+' '+u,s,true):q).replace(/\b(\d+) large egg\b/,(q,c)=>{const v=c*s;return fq(v,'½')+' large egg'+(v>1?'s':'')+(v%1?' (whisk it, then use half)':'')});
+const swList=(x,s)=>x.r.w.map(a=>`<div class='fu in'><span>Instead of</span><b>${a[0]}</b><i aria-hidden='true'>↓</i><span>Try</span><b>${scTxt(a[1],s)}</b><p>${scTxt(a[2],s)}</p></div>`).join('');
+const swLbl=s=>s===1?'':' · '+(s<1?'½':s+'×')+' batch';
+const ingList=(x,s)=>x.r.i.map(a=>`<li><b>${scAmt(a[0],s)}</b><span>${scName(a[1],a[0],s)}</span></li>`).join('');
+const mk=(x,s)=>Math.round(+x.r.makes*s);
+const rnote=(x,s)=>s===1?'':s<1?`Half batch · makes ${mk(x,s)} cookies. Times and oven temperature stay the same.`:`${s}× batch · makes ${mk(x,s)} cookies. Bake one tray at a time; times and oven temperature stay the same.`;
+document.addEventListener('click',e=>{const b=e.target.closest('.sc button');if(!b)return;const s=+b.dataset.s;if(s===SCL)return;SCL=s;const x=D[dOpen];if(!x)return;
+ const sec=$('recipe'),ul=sec.querySelector('.ri ul'),rc=sec.querySelector('.rcp'),sw=$('dbody').querySelector('.sw');sw.classList.add('sw8');$('dbody').querySelector('.swn').textContent=swLbl(s);sec.querySelectorAll('.sc button').forEach(o=>o.setAttribute('aria-checked',+o.dataset.s===s));
+ ul.classList.add('sw8');rc.classList.add('sw8');sec.querySelector('.rnote').textContent=rnote(x,s);
+ setTimeout(()=>{ul.innerHTML=ingList(x,s);ul.querySelectorAll('li').forEach(li=>li.classList.add('fu','in'));sec.querySelector('.mk-n').textContent=mk(x,s);sw.innerHTML=swList(x,s);requestAnimationFrame(()=>{ul.classList.remove('sw8');rc.classList.remove('sw8');sw.classList.remove('sw8')})},180)});
+document.addEventListener('keydown',e=>{const b=e.target.closest&&e.target.closest('.sc button');if(!b||!['ArrowLeft','ArrowRight'].includes(e.key))return;e.preventDefault();const bs=[...b.parentNode.children],j=bs.indexOf(b)+(e.key==='ArrowRight'?1:-1),t=bs[(j+bs.length)%bs.length];t.focus();t.click()});
 const D=[
 {g:'Rolled oats, Medjool dates, almond flour, cinnamon, sea salt.',t:'Wonderful with black tea. Warm for 5 minutes at 150 °C (300 °F) to bring back the softness.',l:'Airtight tin, up to 5 days. Freezes well for 2 months.',
  r:{prep:'15 min',bake:'12 min',oven:'175 °C',ovenF:'350 °F',makes:'12',
@@ -359,7 +401,7 @@ const D=[
 let DR=null,DM=null,DK=null,dObj=null,dOpen=-1,dRun=false,dHv=false,dSp=0,dSc=.6,dTx=0,dTy=0;
 function openD(i){
  dOpen=i;const k=C[i],x=D[i],de=$('detail'),pad=n=>String(n).padStart(2,'0');de.style.setProperty('--dacc',k.a);
- $('dbody').innerHTML=`<section class='dh'><div class='dst' style='--fs:${(150/k.n.length).toFixed(2)}vw'><span class='dl'>Cookie no. ${pad(i+1)}</span><span class='dr'>Baked in small batches</span><h2 aria-label='${k.n}' style='--fs:${(150/k.n.length).toFixed(2)}vw'>${ch(k.n)}</h2><div class='dc' id='dc'></div><div class='sp R s2'><p class='dt'>${k.t}</p><p>${k.d}</p><p class='dn'>${k.p.join(' · ')}</p></div><div class='sp R s3'><h3>Look closer</h3><ol><li><b>Chunks</b> Generous pieces folded in by hand.</li><li><b>Texture</b> Crisp edges, a soft and chewy centre.</li><li><b>Shape</b> Uneven and rustic, never two alike.</li></ol></div><div class='sp L s4'><h3>Ingredients</h3><ul class='ig'>${x.g.replace(/\.$/,'').split(', ').map(g=>'<li>'+g+'</li>').join('')}</ul></div><div class='sp C s5'><p class='dt'>Naturally good.</p></div></div></section><section class='ix'><h3>Ingredients</h3><div class='ic fi'>${x.g.replace(/\.$/,'').split(', ').map((g,j)=>`<div class='it'><span>${pad(j+1)}</span><div><b>${g}</b><p>${ING[g.toLowerCase()]||'Simple, natural and minimally processed.'}</p></div></div>`).join('')}</div></section><section class='ix'><h3>Nutrition · per cookie</h3><div class='nu fi'>${[['Energy',NU[i][0]+' kcal'],['Protein',NU[i][1]+' g'],['Fibre',NU[i][2]+' g'],['Sugars',NU[i][3]+' g'],['Fat',NU[i][4]+' g']].map(a=>`<div><b>${a[1]}</b><span>${a[0]}</span></div>`).join('')}</div><p class='nu-n'>Approximate values for one cookie, based on the recipe below.</p></section><section class='ix' id='recipe'><h3>The recipe</h3><div class='rcp fi'><div><b>${x.r.prep}</b><span>Prep</span></div><div><b>${x.r.bake}</b><span>Bake</span></div><div><b>${x.r.oven}</b><span>Oven · ${x.r.ovenF}</span></div><div><b>${x.r.makes}</b><span>Cookies</span></div></div><div class='rg'><div class='ri'><h4>You'll need</h4><ul>${x.r.i.map(a=>`<li><b>${a[0]}</b><span>${a[1]}</span></li>`).join('')}</ul></div><div class='rm'><h4>Method</h4><ol>${x.r.m.map(s=>`<li>${s}</li>`).join('')}</ol></div></div></section><section class='ix'><h3>Healthy swaps</h3><div class='sw'>${x.r.w.map(a=>`<div><span>Instead of</span><b>${a[0]}</b><i aria-hidden='true'>↓</i><span>Try</span><b>${a[1]}</b><p>${a[2]}</p></div>`).join('')}</div></section><section class='dg'><div><h3>Serving tips</h3><p>${x.t}</p></div><div><h3>Storage</h3><p>${x.l}</p></div><div><h3>Dietary</h3><p>${k.p.join(' · ')}</p></div></section><section class='do'><h3>More cookies</h3><div class='ds'>${C.map((c,j)=>j===i?'':`<a class='oc' href='#${sl(c.n)}' style='background:${c.a}'><span>${pad(j+1)}</span><b>${c.n}</b><small>${c.t}</small></a>`).join('')}</div></section>`;
+ $('dbody').innerHTML=`<section class='dh'><div class='dst' style='--fs:${(150/k.n.length).toFixed(2)}vw'><span class='dl'>Cookie no. ${pad(i+1)}</span><span class='dr'>Baked in small batches</span><h2 aria-label='${k.n}' style='--fs:${(150/k.n.length).toFixed(2)}vw'>${ch(k.n)}</h2><div class='dc' id='dc'></div><div class='sp R s2'><p class='dt'>${k.t}</p><p>${k.d}</p><p class='dn'>${k.p.join(' · ')}</p></div><div class='sp R s3'><h3>Look closer</h3><ol><li><b>Chunks</b> Generous pieces folded in by hand.</li><li><b>Texture</b> Crisp edges, a soft and chewy centre.</li><li><b>Shape</b> Uneven and rustic, never two alike.</li></ol></div><div class='sp L s4'><h3>Ingredients</h3><ul class='ig'>${x.g.replace(/\.$/,'').split(', ').map(g=>'<li>'+g+'</li>').join('')}</ul></div><div class='sp C s5'><p class='dt'>Naturally good.</p></div></div></section><section class='ix'><h3>Ingredients</h3><div class='ic fi'>${x.g.replace(/\.$/,'').split(', ').map((g,j)=>`<div class='it'><span>${pad(j+1)}</span><div><b>${g}</b><p>${ING[g.toLowerCase()]||'Simple, natural and minimally processed.'}</p></div></div>`).join('')}</div></section><section class='ix'><h3>Nutrition · per cookie</h3><div class='nu fi'>${[['Energy',NU[i][0]+' kcal'],['Protein',NU[i][1]+' g'],['Fibre',NU[i][2]+' g'],['Sugars',NU[i][3]+' g'],['Fat',NU[i][4]+' g']].map(a=>`<div><b>${a[1]}</b><span>${a[0]}</span></div>`).join('')}</div><p class='nu-n'>Approximate values for one cookie, based on the recipe below.</p></section><section class='ix' id='recipe'><h3>The recipe</h3><div class='rcp fi'><div><b>${x.r.prep}</b><span>Prep</span></div><div><b>${x.r.bake}</b><span>Bake</span></div><div><b>${x.r.oven}</b><span>Oven · ${x.r.ovenF}</span></div><div><b class='mk-n'>${mk(x,SCL)}</b><span>Cookies</span></div></div><div class='rg'><div class='ri'><div class='rh'><h4>You'll need</h4><div class='sc' role='radiogroup' aria-label='Batch size'>${SCS.map(v=>`<button type='button' role='radio' data-s='${v}' aria-checked='${v===SCL}' aria-label='${v===.5?'Half':v+' times the'} batch'>${v===.5?'½':v}×</button>`).join('')}</div></div><p class='rnote' aria-live='polite'>${rnote(x,SCL)}</p><ul>${ingList(x,SCL)}</ul></div><div class='rm'><h4>Method</h4><ol>${x.r.m.map(s=>`<li>${s}</li>`).join('')}</ol></div></div></section><section class='ix'><h3>Healthy swaps<span class='swn'>${swLbl(SCL)}</span></h3><div class='sw'>${swList(x,SCL).replace(/ class='fu in'/g,'')}</div></section><section class='dg'><div><h3>Serving tips</h3><p>${x.t}</p></div><div><h3>Storage</h3><p>${x.l}</p></div><div><h3>Dietary</h3><p>${k.p.join(' · ')}</p></div></section><section class='do'><h3>More cookies</h3><div class='ds'>${C.map((c,j)=>j===i?'':`<a class='oc' href='#${sl(c.n)}' style='background:${c.a}'><span>${pad(j+1)}</span><b>${c.n}</b><small>${c.t}</small></a>`).join('')}</div></section>`;
  if(R){
   if(!DR){DR=new THREE.WebGLRenderer({antialias:true,alpha:true});DR.setPixelRatio(Math.min(devicePixelRatio||1,2));DR.outputEncoding=THREE.sRGBEncoding;DM=new THREE.Scene();DM.add(new THREE.AmbientLight(0xffffff,.8));const l=new THREE.DirectionalLight(0xffffff,.8);l.position.set(-.6,1,1.4);DM.add(l);DK=new THREE.OrthographicCamera(-1.725,1.725,1.725,-1.725,-10,10)}
   const S=Math.min(innerWidth*1.35,960),dc=$('dc');DR.setSize(S,S,false);dc.appendChild(DR.domElement);
