@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-08T00:00:00Z",
+  "title": "Design System: Crumb & Co.",
+  "extensions": {
+    "colorMeta": {
+      "cream": { "role": "neutral", "displayName": "Cream", "tonalRamp": ["#3d3122", "#5e4d38", "#806b51", "#a38b6d", "#c4ad8f", "#e0cdb2", "#f1e4d0", "#fbf3e6"] },
+      "chocolate-ink": { "role": "primary", "displayName": "Chocolate Ink", "tonalRamp": ["#1f120b", "#3b2418", "#583829", "#764e3c", "#956752", "#b5856f", "#d4aa96", "#efd8cb"] },
+      "cocoa-muted": { "role": "neutral", "displayName": "Cocoa Muted", "tonalRamp": ["#2a1c14", "#45302a", "#5f4536", "#7a5b48", "#97786a", "#b4988b", "#d1b9ad", "#ecdcd3"] },
+      "biscuit-line": { "role": "neutral", "displayName": "Biscuit Line", "tonalRamp": ["#3a2c1a", "#5b472e", "#7d6444", "#a0835e", "#c2a67f", "#e4cfb2", "#efe0cc", "#f8f0e5"] },
+      "night-crust": { "role": "neutral", "displayName": "Night Crust" },
+      "night-ink": { "role": "neutral", "displayName": "Night Ink" },
+      "night-muted": { "role": "neutral", "displayName": "Night Muted" },
+      "night-line": { "role": "neutral", "displayName": "Night Line" },
+      "night-badge": { "role": "neutral", "displayName": "Night Badge" },
+      "curtain-caramel": { "role": "tertiary", "displayName": "Curtain Caramel" },
+      "accent-oat-date": { "role": "secondary", "displayName": "Oat Gold" },
+      "accent-almond-butter": { "role": "secondary", "displayName": "Almond Sand" },
+      "accent-dark-cacao": { "role": "secondary", "displayName": "Cacao Clay" },
+      "accent-pumpkin-spice": { "role": "secondary", "displayName": "Pumpkin Amber" },
+      "accent-coconut-lime": { "role": "secondary", "displayName": "Lime Leaf" },
+      "accent-blueberry-walnut": { "role": "secondary", "displayName": "Blueberry Haze" }
+    },
+    "typographyMeta": {
+      "hero": { "displayName": "Hero", "purpose": "Cookie name on the recipe page, fitted to the viewport." },
+      "display": { "displayName": "Display", "purpose": "About hero; italic 500 for emphasis." },
+      "headline": { "displayName": "Headline", "purpose": "Landing tagline and closing calls to action." },
+      "title": { "displayName": "Title", "purpose": "Lead sentences on recipe and About sections." },
+      "card-title": { "displayName": "Card Title", "purpose": "Swap, team, and cookie card names." },
+      "stat": { "displayName": "Stat", "purpose": "Times, temperature, cookie count, nutrition." },
+      "body": { "displayName": "Body", "purpose": "Descriptions and method steps; prose to about 60ch." },
+      "label": { "displayName": "Label", "purpose": "Uppercase section headings in Cocoa Muted." },
+      "button": { "displayName": "Button", "purpose": "All button and segmented-control text." }
+    },
+    "shadows": [
+      { "name": "cookie-drop", "value": "drop-shadow(0 14px 14px rgba(59,36,24,.25))", "purpose": "2D cookie fallback only (filter)." },
+      { "name": "tooltip-lift", "value": "0 6px 18px rgba(0,0,0,.18)", "purpose": "Wheel hover tooltip." }
+    ],
+    "motion": [
+      { "name": "ease-reveal", "value": "cubic-bezier(.22,1,.36,1)", "purpose": "Text line reveals, fade-ups, card entrances, hover lifts." },
+      { "name": "ease-sheet", "value": "cubic-bezier(.76,0,.24,1)", "purpose": "Recipe sheet slide-up (0.9s) and intro curtain lift (1.1s)." },
+      { "name": "info-swap", "value": "0.18s ease", "purpose": "Landing info block fade-and-rise when the cookie changes." },
+      { "name": "control-fill", "value": "background .2s, color .2s", "purpose": "Outline-to-fill hover on buttons." }
+    ],
+    "breakpoints": [
+      { "name": "xs", "value": "380px" },
+      { "name": "md", "value": "700px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Solid Button",
+      "kind": "button",
+      "refersTo": "button-solid",
+      "description": "The single primary action on a screen.",
+      "html": "<button class=\"ds-btn-solid\">See the recipe</button>",
+      "css": ".ds-btn-solid{border:0;background:var(--ink,#3b2418);color:var(--bg,#fbf3e6);border-radius:99px;height:46px;padding:0 22px;font:600 .9rem/1 'DM Sans',system-ui,sans-serif;cursor:pointer;transition:transform .2s ease,opacity .2s}.ds-btn-solid:hover{transform:translateY(-2px)}.ds-btn-solid:active{transform:scale(.97)}.ds-btn-solid:focus-visible{outline:2px solid var(--ink,#3b2418);outline-offset:3px}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary actions such as Jump to recipe and Back to top.",
+      "html": "<button class=\"ds-btn-outline\">Jump to recipe ↓</button>",
+      "css": ".ds-btn-outline{border:1.5px solid var(--ink,#3b2418);background:var(--bg,#fbf3e6);color:var(--ink,#3b2418);border-radius:99px;height:46px;padding:0 18px;font:600 .85rem/1 'DM Sans',system-ui,sans-serif;cursor:pointer;transition:background .2s,color .2s}.ds-btn-outline:hover{background:var(--ink,#3b2418);color:var(--bg,#fbf3e6)}.ds-btn-outline:focus-visible{outline:2px solid var(--ink,#3b2418);outline-offset:3px}"
+    },
+    {
+      "name": "Icon Button",
+      "kind": "button",
+      "refersTo": "button-icon",
+      "description": "Wheel prev/next and sheet back.",
+      "html": "<button class=\"ds-btn-icon\" aria-label=\"Previous\">←</button>",
+      "css": ".ds-btn-icon{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--ink,#3b2418);background:transparent;color:var(--ink,#3b2418);font-size:1.2rem;cursor:pointer;transition:background .2s,color .2s}.ds-btn-icon:hover{background:var(--ink,#3b2418);color:var(--bg,#fbf3e6)}.ds-btn-icon:active{transform:scale(.94)}.ds-btn-icon:focus-visible{outline:2px solid var(--ink,#3b2418);outline-offset:3px}"
+    },
+    {
+      "name": "Batch Size Control",
+      "kind": "custom",
+      "refersTo": "segmented-option-selected",
+      "description": "Segmented radio group that scales the recipe.",
+      "html": "<div class=\"ds-seg\" role=\"radiogroup\"><button role=\"radio\" aria-checked=\"false\">½×</button><button role=\"radio\" aria-checked=\"true\">1×</button><button role=\"radio\" aria-checked=\"false\">2×</button><button role=\"radio\" aria-checked=\"false\">3×</button></div>",
+      "css": ".ds-seg{display:inline-flex;gap:4px;padding:3px;border:1px solid var(--line,#e4cfb2);border-radius:99px}.ds-seg button{min-width:44px;height:40px;padding:0 10px;border:0;border-radius:99px;background:transparent;color:var(--ink,#3b2418);font:600 .85rem/1 'DM Sans',system-ui,sans-serif;font-variant-numeric:tabular-nums;cursor:pointer;transition:background .2s,color .2s}.ds-seg button[aria-checked=true]{background:var(--ink,#3b2418);color:var(--bg,#fbf3e6)}.ds-seg button:not([aria-checked=true]):hover{background:color-mix(in srgb,var(--ink,#3b2418) 10%,transparent)}.ds-seg button:focus-visible{outline:2px solid var(--ink,#3b2418);outline-offset:2px}"
+    },
+    {
+      "name": "Pill Tag",
+      "kind": "chip",
+      "refersTo": "pill-tag",
+      "description": "Dietary and benefit tags under each cookie.",
+      "html": "<span class=\"ds-pill\">No refined sugar</span>",
+      "css": ".ds-pill{display:inline-block;border:1px solid var(--line,#e4cfb2);border-radius:99px;padding:5px 12px;font:600 .82rem/1.2 'DM Sans',system-ui,sans-serif;color:var(--ink,#3b2418)}"
+    },
+    {
+      "name": "Swap Card",
+      "kind": "card",
+      "refersTo": "card-outline",
+      "description": "Outlined card used for healthy swaps, About, and team.",
+      "html": "<div class=\"ds-swap\"><span>Instead of</span><b>Egg</b><i>↓</i><span>Try</span><b>Flax egg</b><p>1 tbsp ground flax + 3 tbsp water, rested 5 min.</p></div>",
+      "css": ".ds-swap{max-width:260px;border:1px solid var(--line,#e4cfb2);border-radius:20px;padding:24px;display:flex;flex-direction:column;color:var(--ink,#3b2418);font-family:'DM Sans',system-ui,sans-serif}.ds-swap span{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted,#7a5b48)}.ds-swap b{font:700 1.45rem/1.15 Fraunces,Georgia,serif;margin:4px 0 0}.ds-swap i{font-style:normal;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#e8b36a;color:#3b2418;margin:14px 0;font-size:.9rem}.ds-swap p{margin:14px 0 0;padding-top:14px;border-top:1px solid var(--line,#e4cfb2);font-size:.95rem;color:var(--muted,#7a5b48);line-height:1.5}"
+    },
+    {
+      "name": "Cookie Card",
+      "kind": "card",
+      "refersTo": "card-cookie",
+      "description": "Accent-filled card in the More cookies row.",
+      "html": "<a class=\"ds-cookie\" href=\"#\"><span>02</span><b>Almond Butter</b><small>Gluten-free and full of good fats.</small></a>",
+      "css": ".ds-cookie{width:220px;aspect-ratio:3/4;border-radius:20px;padding:20px;display:flex;flex-direction:column;justify-content:flex-end;background:#f0c98a;color:#3b2418;text-decoration:none;font-family:'DM Sans',system-ui,sans-serif;transition:transform .5s cubic-bezier(.22,1,.36,1)}.ds-cookie:hover{transform:translateY(-6px)}.ds-cookie:focus-visible{outline:2px solid #3b2418;outline-offset:3px}.ds-cookie span{font-size:.8rem;letter-spacing:.14em;margin-bottom:auto;opacity:.7}.ds-cookie b{font:700 1.6rem/1.05 Fraunces,Georgia,serif}.ds-cookie small{margin-top:6px;opacity:.8}"
+    },
+    {
+      "name": "Header Nav",
+      "kind": "nav",
+      "description": "Wordmark, text link with growing accent underline, tabular counter.",
+      "html": "<header class=\"ds-nav\"><a class=\"ds-brand\" href=\"#\">Crumb &amp; Co.</a><div><a class=\"ds-link\" href=\"#\">About</a><span class=\"ds-count\">01 / 06</span></div></header>",
+      "css": ".ds-nav{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;color:var(--ink,#3b2418);font-family:'DM Sans',system-ui,sans-serif}.ds-nav div{display:flex;align-items:center;gap:24px}.ds-brand{font:700 1.35rem/1 Fraunces,Georgia,serif;color:inherit;text-decoration:none}.ds-link{color:var(--ink,#3b2418);text-decoration:none;font-size:.9rem;font-weight:600;padding:12px 4px;background:linear-gradient(#e8b36a,#e8b36a) 0 100%/0 2px no-repeat;transition:background-size .3s ease}.ds-link:hover{background-size:100% 2px}.ds-link:focus-visible{outline:2px solid var(--ink,#3b2418);outline-offset:3px;border-radius:2px}.ds-count{font-variant-numeric:tabular-nums;color:var(--muted,#7a5b48);font-size:.9rem;letter-spacing:.08em}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Warm Cream, Chocolate Ink, One Cookie at a Time",
+    "overview": "Crumb & Co. looks like a bakery printed on warm paper. The page is cream, everything is set in a deep chocolate brown, and headings use Fraunces, a soft high-contrast serif that does most of the expressive work. Depth and colour come from the cookies, not from the interface. Each recipe shows one 3D cookie on a large soft disc of that cookie's accent colour, and that accent tints the whole recipe page.\n\nThe interface around the cookie is quiet and generous. It is single-column and centred on the landing wheel, then moves to an editorial two-column recipe layout with thin biscuit-coloured rules, small uppercase labels and large serif numbers. Motion is cinematic but brief. A caramel curtain lifts on load, lines of headings rise out of masks, and the recipe page slides up as a sheet. All of it falls back to still when the visitor prefers reduced motion.\n\nThere is a full dark mode (\"night bake\"). Cream becomes a near-black crust and the ink becomes a warm off-white, while the cookie accents stay the same.",
+    "keyCharacteristics": [
+      "Two-colour base (cream and chocolate) with one cookie accent at a time.",
+      "Fraunces for anything a person reads as a name or a number; DM Sans for everything else.",
+      "Hairline rules and outlines rather than filled panels.",
+      "Pills, circles and 20px cards make every control soft.",
+      "Large type and a single centred hero object per screen."
+    ],
+    "rules": [
+      { "name": "The Page Wears Its Cookie Rule", "body": "A recipe page takes its accent from its own cookie: the hero disc, the swap arrow badges and the step numbers (accent mixed 50% with ink). No other cookie's accent appears on that page except on its own card in \"More cookies\".", "section": "colors" },
+      { "name": "The Ink On Accent Rule", "body": "Accent fills always carry Chocolate Ink text. They are never white and never flipped in dark mode.", "section": "colors" },
+      { "name": "The Serif Counts Rule", "body": "Numbers a baker reads at a glance (times, temperature, cookie count, nutrition, step numbers like \"01\") are set in Fraunces 700. Quantities inside the ingredient list stay in DM Sans 600 with tabular numerals, so they line up.", "section": "typography" },
+      { "name": "The Quiet Label Rule", "body": "Section headings are small uppercase DM Sans in Cocoa Muted, never large. Size and weight go to the content beneath them.", "section": "typography" },
+      { "name": "The Flat Chrome Rule", "body": "Buttons, cards and panels have no shadow. Hover states change fill or move up 2–6px; they never add a shadow.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep the base to Cream and Chocolate Ink, and let the current cookie's accent be the only colour on its page.",
+      "Do put Chocolate Ink (#3b2418) text on every accent fill, in light and dark mode alike.",
+      "Do set names and glanceable numbers in Fraunces 700, and section labels in small uppercase DM Sans 600 with 0.14em tracking in Cocoa Muted.",
+      "Do separate content with 1px Biscuit Line hairlines and 20px outlined cards rather than shaded panels.",
+      "Do use the 2px ink focus ring with a 3px offset on every interactive element.",
+      "Do make interactive controls at least 44px tall, and buttons and icon buttons 46px.",
+      "Do give every reveal or transform animation a prefers-reduced-motion fallback that shows the end state at once.",
+      "Do use the house ease cubic-bezier(.22,1,.36,1) for reveals and cubic-bezier(.76,0,.24,1) for full-screen sheets and the curtain."
+    ],
+    "donts": [
+      "Don't add drop shadows to buttons, cards or panels; depth belongs to the cookie.",
+      "Don't use white text on an accent or invert accents in dark mode.",
+      "Don't mix several cookie accents on one recipe page outside the \"More cookies\" row.",
+      "Don't use sharp corners on controls or cards; everything is a pill, a circle or a 20px radius.",
+      "Don't introduce a third typeface."
+    ]
+  }
+}
