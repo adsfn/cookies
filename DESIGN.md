@@ -40,9 +40,19 @@ typography:
     fontSize: "clamp(1.4rem, 3.4vw, 2rem)"
     fontWeight: 600
     lineHeight: 1.25
+  brand:
+    fontFamily: "Fraunces, Georgia, serif"
+    fontSize: "1.35rem"
+    fontWeight: 700
+    lineHeight: 1
   card-title:
     fontFamily: "Fraunces, Georgia, serif"
     fontSize: "1.45rem"
+    fontWeight: 700
+    lineHeight: 1.15
+  small-title:
+    fontFamily: "Fraunces, Georgia, serif"
+    fontSize: "1.25rem"
     fontWeight: 700
     lineHeight: 1.15
   stat:
@@ -50,11 +60,26 @@ typography:
     fontSize: "clamp(2.2rem, 4.5vw, 3.6rem)"
     fontWeight: 700
     lineHeight: 1
+  body-lg:
+    fontFamily: "DM Sans, system-ui, sans-serif"
+    fontSize: "1.05rem"
+    fontWeight: 400
+    lineHeight: 1.7
   body:
     fontFamily: "DM Sans, system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.55
+  body-sm:
+    fontFamily: "DM Sans, system-ui, sans-serif"
+    fontSize: "0.95rem"
+    fontWeight: 400
+    lineHeight: 1.5
+  caption:
+    fontFamily: "DM Sans, system-ui, sans-serif"
+    fontSize: "0.8rem"
+    fontWeight: 400
+    lineHeight: 1.3
   label:
     fontFamily: "DM Sans, system-ui, sans-serif"
     fontSize: "0.75rem"
@@ -191,12 +216,19 @@ Text on any accent fill is always Chocolate Ink (#3b2418), in both themes.
 - **Display** (700, clamp(2.9rem, 9vw, 7.4rem), 0.92, -0.01em): The About hero. Italic 500 is used for emphasis words.
 - **Headline** (700, clamp(2rem, 6vw, 3.2rem), 1.05): The cookie tagline on the landing wheel, and closing calls like "Ready to bake?".
 - **Title** (600, clamp(1.4rem, 3.4vw, 2rem), 1.25): Lead sentences on recipe and About sections.
-- **Card Title** (700, about 1.25–1.6rem, 1.05–1.15): Swap names, team names, "Look closer" items and cookie card names.
+- **Card Title** (700, 1.45rem, 1.05–1.15): Swap names, ingredient cards and cookie card names.
+- **Brand** (700, 1.35rem, 1): The header wordmark.
+- **Small Title** (700, 1.25rem, 1.15): Team names, "Look closer" items, avatar initials and the cook-mode title.
 - **Stat** (700, clamp(2.2rem, 4.5vw, 3.6rem), 1): Prep and bake time, oven temperature, cookie count and nutrition figures.
+- **Body Large** (400, 1.05rem, 1.7): About prose, the method list and cook-mode ingredient rows.
 - **Body** (400, 1rem; 1.5–1.7 line height): Descriptions and method steps. Long prose is held to about 60ch.
-- **Label** (600, 0.72–0.78rem, 0.14em tracking, uppercase, Cocoa Muted): Every section heading ("The recipe", "Healthy swaps", "You'll need").
+- **Body Small** (400–600, 0.95rem, 1.5): Footer text, header links, swap notes, the counter and other secondary text.
+- **Caption** (400–600, 0.8rem): Pills, card index numbers, notes and the footer's © line.
+- **Label** (600, 0.75rem, 0.14em tracking, uppercase, Cocoa Muted): Every section heading ("The recipe", "Healthy swaps", "You'll need"). 0.75rem (12px) is the smallest text on the site.
 
 ### Named Rules
+**The Twelve-Pixel Floor Rule.** No text is set below 0.75rem. New sizes join one of the steps above rather than adding an in-between value.
+
 **The Serif Counts Rule.** Numbers a baker reads at a glance (times, temperature, cookie count, nutrition, step numbers like "01") are set in Fraunces 700. Quantities inside the ingredient list stay in DM Sans 600 with tabular numerals, so they line up.
 
 **The Quiet Label Rule.** Section headings are small uppercase DM Sans in Cocoa Muted, never large. Size and weight go to the content beneath them.
