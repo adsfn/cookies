@@ -42,7 +42,7 @@ Every recipe is built to be healthier from the start (fruit-sweetened, wholegrai
 ## Evidence on Hand
 
 - Real recipes with measurements, nutrition, swaps, tips and storage notes, all in `index.html`.
-- The team, stated on the About page: founder Benjamin Xian (who also designed the site), with co-founders Akshayan Sriananthan, Skylar Hom and James Ancheta.
+- The team, stated on the About page: four founders: Benjamin Xian (founder and designer, who also designed the site), Akshayan Sriananthan (founder and facilitator), Skylar Hom (founder and marketing) and James Ancheta (founder and researcher).
 - None of the following exist, so none may be invented: testimonials, reviews, ratings, press, photography of baked cookies, certified or lab-tested nutrition data, or bakery or retail claims.
 
 ## Product Principles
