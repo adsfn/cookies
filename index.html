@@ -802,10 +802,9 @@ st.addEventListener("pointermove",e=>{if(!drag)return;const dx=e.clientX-lx;lx=e
 /* a fling lands on the next cookie in its direction, never two or three further on */
 const end=e=>{if(!drag)return;drag=false;if(performance.now()-lt>90)vel=0;if(vel){const d=Math.sign(vel);target=d>0?Math.floor(pos+.15)+1:Math.ceil(pos-.15)-1;sv=vel*30;vel=0}if(moved<6){const i=R?hit(e.clientX-SL,e.clientY-STP):items.indexOf(document.elementFromPoint(e.clientX,e.clientY)?.closest(".item"));if(i>-1){if(i===active)location.hash=sl(C[i].n);else go(i)}}};
 st.addEventListener("pointerup",end);st.addEventListener("pointercancel",()=>{drag=false});
-/* wheel and trackpad: one cookie per gesture; a long continuous scroll steps again only after a pause-free stretch */
-let wt=0,wa=0,ws=0;st.addEventListener("wheel",e=>{const d=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY,a=Math.abs(d),s=Math.sign(d),now=performance.now(),dt=now-wt;if(a<1)return;wt=now;
- if(dt>200){go(Math.round(target??pos)+s);ws=now;wa=0}
- else{wa+=d;if(Math.abs(wa)>260&&now-ws>480){step(Math.sign(wa));ws=now;wa=0}}},{passive:true});
+let wt=0;st.addEventListener("wheel",e=>{const d=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY,a=Math.abs(d),s=Math.sign(d),now=performance.now(),dt=now-wt;if(a<1)return;wt=now;
+ if(dt>200){go(Math.round(target??pos)+s)}
+ else if(a>=30){target=null;vel=Math.max(-.6,Math.min(.6,vel+s*Math.min(a,120)*.0004))}},{passive:true});
 st.addEventListener("keydown",e=>{if(e.key==="ArrowRight")step(1);if(e.key==="ArrowLeft")step(-1);if(e.key==="Enter")location.hash=sl(C[active].n)});
 addEventListener("pointermove",e=>{if(e.pointerType==="touch"){MX=MY=-1e4;return}MX=e.clientX-SL;MY=e.clientY-STP});document.documentElement.addEventListener("pointerleave",()=>{MX=MY=-1e4});
 $("next").onclick=()=>step(1);$("prev").onclick=()=>step(-1);
