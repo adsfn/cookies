@@ -29,7 +29,7 @@ Every recipe is built to be healthier from the start (fruit-sweetened, wholegrai
 
 - Six recipes at present: Oat & Date, Almond Butter, Dark Cacao (chickpea flour), Pumpkin Spice, Coconut Lime, Blueberry Walnut.
 - Static site in a single `index.html` (inline CSS/JS, Google Fonts), with no build step and no framework. The 3D cookie model is embedded as base64 GLB, so the file is about 1.7 MB.
-- Installable as a PWA (`site.webmanifest`); supports light and dark color schemes and `prefers-reduced-motion`.
+- Installable as a PWA (`site.webmanifest`); always dark (the "night bake" palette, whatever the system preference), and respects `prefers-reduced-motion`.
 - Nutrition values are approximate, per cookie, and must keep saying so.
 - The 3D cookie model is by TiraArt on Sketchfab. Keep the credit wherever the model is used.
 

@@ -162,7 +162,7 @@ Crumb & Co. looks like a bakery printed on warm paper. The page is cream, everyt
 
 The interface around the cookie is quiet and generous. It is single-column and centred on the landing wheel, then moves to an editorial two-column recipe layout with thin biscuit-coloured rules, small uppercase labels and large serif numbers. Motion is cinematic but brief. A caramel curtain lifts on load, lines of headings rise out of masks, and the recipe page slides up as a sheet. All of it falls back to still when the visitor prefers reduced motion.
 
-There is a full dark mode ("night bake"). Cream becomes a near-black crust and the ink becomes a warm off-white, while the cookie accents stay the same.
+The site always renders in dark mode ("night bake"), whatever the visitor's system preference: `<html data-theme="dark">` sets the night tokens outright. Cream becomes a near-black crust and the ink becomes a warm off-white, while the cookie accents stay the same. The light tokens remain as the base values the night tokens override.
 
 **Key Characteristics:**
 - Two-colour base (cream and chocolate) with one cookie accent at a time.

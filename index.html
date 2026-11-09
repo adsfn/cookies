@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -21,8 +21,8 @@
 <meta name="twitter:description" content="Healthy homemade cookie recipes that still taste like a treat, with full measurements, nutrition and easy swaps.">
 <meta name="twitter:image" content="https://crumbleco.vercel.app/og-image.png">
 <meta name="twitter:image:alt" content="A 3D dark cacao cookie on a soft circle beside the words: Healthy baking should feel like a treat. Crumb &amp; Co.">
-<meta name="theme-color" content="#fbf3e6" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1d1410" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#1d1410">
+<meta name="color-scheme" content="dark">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -32,10 +32,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=DM+Sans:wght@400;600&display=swap">
 <style>
 :root{--bg:#fbf3e6;--ink:#3b2418;--muted:#7a5b48;--line:#e4cfb2;--acc:#e8b36a;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){--bg:#1d1410;--ink:#f6e7d3;--muted:#c4a68c;--line:#3a2a20;color-scheme:dark}
-}
-:root[data-theme="dark"]{color-scheme:dark}
+/* always the night bake, whatever the system preference */
+:root[data-theme="dark"]{--bg:#1d1410;--ink:#f6e7d3;--muted:#c4a68c;--line:#3a2a20;color-scheme:dark}
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 html,body{height:100%;margin:0}
@@ -300,9 +298,6 @@ a.brand:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
 .bt{white-space:nowrap}
 .curtain .mark{width:1.5em;height:1.5em;animation:cmk .8s cubic-bezier(.34,1.56,.64,1) both}
 @keyframes cmk{from{opacity:0;transform:scale(.6) rotate(-20deg)}}
-@media(prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){--badge:#4a2a1a}
-}
 :root[data-theme="dark"]{--bg:#1d1410;--ink:#f6e7d3;--muted:#c4a68c;--line:#3a2a20;--badge:#4a2a1a}
 @media(max-width:699px){
   .dh h2{transform:none;padding-top:calc(max(104px,15svh) + env(safe-area-inset-top,0px))}
@@ -1042,7 +1037,7 @@ function lcDraw(){const sv=document.querySelector('#dbody .lcs'),pn=document.que
   dist=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]),apart=q=>pts.every(t=>!t||dist(q,t)>30),near=(L,j)=>{let b=-1,bd=1e9;L.forEach((q,k)=>{const r0=rp[j]||q,d=mob?dist(q,r0):Math.abs(q[0]-r0[0])+2.5*Math.abs(q[1]-r0[1]);if(d<bd&&apart(q)){bd=d;b=k}});return b<0?0:b};
  const order=cues.map((c,j)=>j).sort((a,b)=>(cues[a][2]==='centre'?0:cues[a][2]==='edge'?1:2)-(cues[b][2]==='centre'?0:cues[b][2]==='edge'?1:2));
  order.forEach(j=>{const key=cues[j][2],L=A[key];if(!L||!L.length)return;const P=L.map(pr);
-  if(key==='centre'||key==='edge')pts[j]=P[near(P,j)];else{if(pk[j]==null||!P[pk[j]]){const k=near(P,j);if(o>=.98)pk[j]=k;pts[j]=P[k]}else pts[j]=P[pk[j]]}});
+  if(!mob&&(key==='centre'||key==='edge'))pts[j]=P[near(P,j)];else{if(pk[j]==null||!P[pk[j]]){const k=near(P,j);if(mob||o>=.98)pk[j]=k;pts[j]=P[k]}else pts[j]=P[pk[j]]}});
  let h='';lis.forEach((li,j)=>{const t=pts[j];if(!t)return;const x=t[0].toFixed(1),y=t[1].toFixed(1);
   if(!mob)h+=`<line x1='${x}' y1='${y}' x2='${rp[j][0].toFixed(1)}' y2='${rp[j][1].toFixed(1)}'/>`;h+=`<circle cx='${x}' cy='${y}' r='11'/><text x='${x}' y='${y}'>${j+1}</text>`});
  sv.innerHTML=h;sv.style.opacity=o}
