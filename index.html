@@ -114,9 +114,9 @@ h1{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:clamp(2rem,6vw,3
 .do h3{padding:0 clamp(20px,4vw,48px);margin-bottom:22px}
 .ds{display:flex;gap:16px;overflow-x:auto;padding:0 clamp(20px,4vw,48px);scroll-snap-type:x mandatory}
 .oc{flex:0 0 min(72vw,280px);aspect-ratio:3/4;border-radius:20px;padding:20px;display:flex;flex-direction:column;justify-content:flex-end;color:#3b2418;text-decoration:none}
-.oc span{font-size:.8rem;letter-spacing:.14em;margin-bottom:auto;opacity:.7}
+.oc span{font-size:.8rem;letter-spacing:.14em;margin-bottom:auto;color:color-mix(in srgb,#3b2418 72%,#000)}
 .oc b{font:700 1.45rem/1.05 Fraunces,Georgia,serif}
-.oc small{margin-top:6px;opacity:.8}
+.oc small{margin-top:6px;color:color-mix(in srgb,#3b2418 72%,#000)}
 .mc{display:inline-block;overflow:hidden;vertical-align:top;padding:.08em 0 .1em;margin:-.08em 0 -.1em}
 .mc i{display:inline-block;font-style:normal;transform:translateY(108%);animation:cup .9s cubic-bezier(.22,1,.36,1) calc(.3s + var(--j)*35ms) both}
 @keyframes cup{to{transform:none}}
@@ -185,7 +185,7 @@ h1{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:clamp(2rem,6vw,3
 }
 .ix{padding:10vh clamp(20px,6vw,100px);border-top:1px solid var(--line)}
 .it{background:var(--dacc);border-radius:20px;padding:20px;display:flex;flex-direction:column;justify-content:space-between;color:#3b2418}
-.it span{font-size:.8rem;letter-spacing:.14em;opacity:.7}
+.it span{font-size:.8rem;letter-spacing:.14em;color:color-mix(in srgb,#3b2418 72%,#000)}
 .it b{font:700 1.45rem/1.1 Fraunces,Georgia,serif}
 .nu,.rcp{display:grid}
 .nu b,.rcp b{display:block;font:700 clamp(2rem,4vw,3rem)/1 Fraunces,Georgia,serif;margin-bottom:6px}
@@ -195,11 +195,11 @@ h1{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:clamp(2rem,6vw,3
 .ix{display:flex;flex-direction:column}
 .ic{flex-wrap:wrap}
 .it{position:relative;overflow:hidden}
-.it::after{content:'';position:absolute;right:-60px;top:-60px;width:200px;aspect-ratio:1;border-radius:50%;background:#fff;opacity:.18}
-.it>div{position:relative}
+.it::after{content:'';position:absolute;z-index:0;right:-60px;top:-60px;width:200px;aspect-ratio:1;border-radius:50%;background:#fff;opacity:.18}
+.it>*{position:relative;z-index:1}
 .it b{display:block}
 .it b::first-letter,.ig li::first-letter{text-transform:uppercase}
-.it p{font-size:.95rem;line-height:1.4;margin:10px 0 0;opacity:.85}
+.it p{font-size:.95rem;line-height:1.4;margin:10px 0 0;color:color-mix(in srgb,#3b2418 72%,#000)}
 .st li{padding:10px 0}
 .dl,.dr{top:80svh;font:500 clamp(1.1rem,2.2vw,1.9rem)/1.15 Fraunces,Georgia,serif;text-transform:none;letter-spacing:0;color:var(--ink)}
 .dr{max-width:12ch;text-align:right}
@@ -246,6 +246,15 @@ body.dopen>header,body.dopen #stage,body.dopen .info{opacity:0!important;transit
 .dg>div{border-top:1px solid var(--line)}
 .dg p{max-width:36ch}
 .ic{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px}
+@media(max-width:699px){
+  .it{min-height:150px}
+}
+@media(min-width:700px){
+  .ic{grid-template-columns:repeat(var(--c2,3),minmax(0,1fr))}
+}
+@media(min-width:1100px){
+  .ic{grid-template-columns:repeat(var(--c,4),minmax(0,1fr))}
+}
 .rcp{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
 .rg{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,96px);margin-top:clamp(40px,7vh,72px)}
 .ri h4,.rm h4{font:600 .75rem/1 'DM Sans',system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
@@ -1015,7 +1024,7 @@ const DVL=['Gluten-free','Vegan','Nut-free','Dairy-free'],DVS={y:'Yes',c:'Yes, i
 const dvList=x=>x.v.map((v,j)=>`<li class='${v[0]}'><b>${DVL[j]}</b><span class='dv-a'><i aria-hidden='true'></i>${DVS[v[0]]}${v[0]==='c'?'':v[1]?'.':''}</span>${v[1]?`<small>${v[1]}</small>`:''}</li>`).join('');
 function openD(i){
  if(SCLI!==i){SCL=1;SCLI=i}dOpen=i;const k=C[i],x=D[i],de=$('detail'),pad=n=>String(n).padStart(2,'0');de.style.setProperty('--dacc',k.a);
- $('dbody').innerHTML=`<section class='dh'><div class='dst' style='--fs:${(150/k.n.length).toFixed(2)}vw'><span class='dl'>Cookie no. ${pad(i+1)}</span><span class='dr'>Makes ${mk(x,SCL)} cookies</span><h2 aria-label='${k.n}' style='--fs:${(150/k.n.length).toFixed(2)}vw'>${ch(k.n)}</h2><div class='dc' id='dc'></div><div class='sp R s2'><p class='dt'>${k.t}</p><p>${k.d}</p><p class='dn'>${k.p.join(' · ')}</p></div><div class='sp R s3'><h3>Look closer</h3><ol>${x.lc.map((a,j)=>`<li><b><i class='lcn' aria-hidden='true'>${j+1}</i>${a[0]}</b> ${a[1]}</li>`).join('')}</ol></div><svg class='lcs' aria-hidden='true'></svg><div class='sp L s4'><h3>Ingredients</h3><ul class='ig'>${x.g.replace(/\.$/,'').split(', ').map(g=>'<li>'+g+'</li>').join('')}</ul></div><div class='sp C s5'><p class='dt'>Naturally good.</p></div></div></section><section class='ix'><h3>Ingredients</h3><div class='ic fi'>${x.g.replace(/\.$/,'').split(', ').map((g,j)=>`<div class='it'><span>${pad(j+1)}</span><div><b>${g}</b><p>${ING[g.toLowerCase()]||'Simple, natural and minimally processed.'}</p></div></div>`).join('')}</div></section><section class='ix'><h3>Nutrition · per cookie</h3><div class='nu fi'>${[['Energy',NU[i][0]+' kcal'],['Protein',NU[i][1]+' g'],['Fibre',NU[i][2]+' g'],['Sugars',NU[i][3]+' g'],['Fat',NU[i][4]+' g']].map(a=>`<div><b>${a[1]}</b><span>${a[0]}</span></div>`).join('')}</div><p class='nu-n'>Approximate values for one cookie, based on the recipe below.</p></section><section class='ix' id='diet'><h3>Dietary</h3><p class='dv-c'><b>Contains:</b> ${x.al}</p><ul class='dv'>${dvList(x)}</ul><p class='nu-n'>Based on the ingredients as written. If you bake for an allergy, check every label.</p></section><section class='ix' id='recipe'><h3>The recipe</h3><div class='rcp fi'><div><b>${x.r.prep}</b><span>Prep</span></div><div><b>${x.r.bake}</b><span>Bake</span></div><div><b>${x.r.oven}</b><span>Oven · ${x.r.ovenF}</span></div><div><b class='mk-n'>${mk(x,SCL)}</b><span>Cookies</span></div></div><p class='tkh'><span>Tap an ingredient or step to tick it off.</span><button type='button' class='tkc'${tkAny()?'':' hidden'}>Clear ticks</button></p><div class='rg'><div class='ri'><div class='rh'><h4>You'll need</h4><div class='sc' role='radiogroup' aria-label='Batch size'>${SCS.map(v=>`<button type='button' role='radio' data-s='${v}' aria-checked='${v===SCL}' aria-label='${v===.5?'Half':v+' times the'} batch'>${v===.5?'½':v}×</button>`).join('')}</div></div><p class='rnote' aria-live='polite'>${rnote(x,SCL)}</p><ul>${ingList(x,SCL)}</ul></div><div class='rm'><h4>Method</h4><ol>${x.r.m.map((s,j)=>`<li><button type='button' class='tk' data-tk='m${j}' aria-pressed='${tkHas('m',j)}'>${durB(s)}</button></li>`).join('')}</ol></div></div></section><section class='ix'><h3>Healthy swaps<span class='swn'>${swLbl(SCL)}</span></h3><div class='sw'>${swList(x,SCL).replace(/ class='fu in'/g,'')}</div></section><section class='dg'><div><h3>Serving tips</h3><p>${x.t}</p></div><div><h3>Storage</h3><p>${x.l}</p></div></section><section class='do'><h3>More cookies</h3><div class='ds'>${C.map((c,j)=>j===i?'':`<a class='oc' href='#${sl(c.n)}' style='background:${c.a}'><span>${pad(j+1)}</span><b>${c.n}</b><small>${c.t}</small></a>`).join('')}</div></section>${foot(i)}`;
+ $('dbody').innerHTML=`<section class='dh'><div class='dst' style='--fs:${(150/k.n.length).toFixed(2)}vw'><span class='dl'>Cookie no. ${pad(i+1)}</span><span class='dr'>Makes ${mk(x,SCL)} cookies</span><h2 aria-label='${k.n}' style='--fs:${(150/k.n.length).toFixed(2)}vw'>${ch(k.n)}</h2><div class='dc' id='dc'></div><div class='sp R s2'><p class='dt'>${k.t}</p><p>${k.d}</p><p class='dn'>${k.p.join(' · ')}</p></div><div class='sp R s3'><h3>Look closer</h3><ol>${x.lc.map((a,j)=>`<li><b><i class='lcn' aria-hidden='true'>${j+1}</i>${a[0]}</b> ${a[1]}</li>`).join('')}</ol></div><svg class='lcs' aria-hidden='true'></svg><div class='sp L s4'><h3>Ingredients</h3><ul class='ig'>${x.g.replace(/\.$/,'').split(', ').map(g=>'<li>'+g+'</li>').join('')}</ul></div><div class='sp C s5'><p class='dt'>Naturally good.</p></div></div></section><section class='ix'><h3>Ingredients</h3><div class='ic fi' style='${(n=>`--c:${n<=5?n:Math.ceil(n/2)};--c2:${n===4?2:3}`)(x.g.split(', ').length)}'>${x.g.replace(/\.$/,'').split(', ').map((g,j)=>`<div class='it'><span>${pad(j+1)}</span><div><b>${g}</b><p>${ING[g.toLowerCase()]||'Simple, natural and minimally processed.'}</p></div></div>`).join('')}</div></section><section class='ix'><h3>Nutrition · per cookie</h3><div class='nu fi'>${[['Energy',NU[i][0]+' kcal'],['Protein',NU[i][1]+' g'],['Fibre',NU[i][2]+' g'],['Sugars',NU[i][3]+' g'],['Fat',NU[i][4]+' g']].map(a=>`<div><b>${a[1]}</b><span>${a[0]}</span></div>`).join('')}</div><p class='nu-n'>Approximate values for one cookie, based on the recipe below.</p></section><section class='ix' id='diet'><h3>Dietary</h3><p class='dv-c'><b>Contains:</b> ${x.al}</p><ul class='dv'>${dvList(x)}</ul><p class='nu-n'>Based on the ingredients as written. If you bake for an allergy, check every label.</p></section><section class='ix' id='recipe'><h3>The recipe</h3><div class='rcp fi'><div><b>${x.r.prep}</b><span>Prep</span></div><div><b>${x.r.bake}</b><span>Bake</span></div><div><b>${x.r.oven}</b><span>Oven · ${x.r.ovenF}</span></div><div><b class='mk-n'>${mk(x,SCL)}</b><span>Cookies</span></div></div><p class='tkh'><span>Tap an ingredient or step to tick it off.</span><button type='button' class='tkc'${tkAny()?'':' hidden'}>Clear ticks</button></p><div class='rg'><div class='ri'><div class='rh'><h4>You'll need</h4><div class='sc' role='radiogroup' aria-label='Batch size'>${SCS.map(v=>`<button type='button' role='radio' data-s='${v}' aria-checked='${v===SCL}' aria-label='${v===.5?'Half':v+' times the'} batch'>${v===.5?'½':v}×</button>`).join('')}</div></div><p class='rnote' aria-live='polite'>${rnote(x,SCL)}</p><ul>${ingList(x,SCL)}</ul></div><div class='rm'><h4>Method</h4><ol>${x.r.m.map((s,j)=>`<li><button type='button' class='tk' data-tk='m${j}' aria-pressed='${tkHas('m',j)}'>${durB(s)}</button></li>`).join('')}</ol></div></div></section><section class='ix'><h3>Healthy swaps<span class='swn'>${swLbl(SCL)}</span></h3><div class='sw'>${swList(x,SCL).replace(/ class='fu in'/g,'')}</div></section><section class='dg'><div><h3>Serving tips</h3><p>${x.t}</p></div><div><h3>Storage</h3><p>${x.l}</p></div></section><section class='do'><h3>More cookies</h3><div class='ds'>${C.map((c,j)=>j===i?'':`<a class='oc' href='#${sl(c.n)}' style='background:${c.a}'><span>${pad(j+1)}</span><b>${c.n}</b><small>${c.t}</small></a>`).join('')}</div></section>${foot(i)}`;
  if(R){
   if(!DR){DR=new THREE.WebGLRenderer({antialias:true,alpha:true});DR.domElement.setAttribute('aria-hidden','true');DR.setPixelRatio(Math.min(devicePixelRatio||1,2));DR.outputEncoding=THREE.sRGBEncoding;DM=new THREE.Scene();DM.add(new THREE.AmbientLight(0xffffff,.8));const l=new THREE.DirectionalLight(0xffffff,.8);l.position.set(-.6,1,1.4);DM.add(l);DK=new THREE.OrthographicCamera(-1.725,1.725,1.725,-1.725,-10,10)}
   const S=Math.min(innerWidth*1.35,960),dc=$('dc');DR.setSize(S,S,false);dc.appendChild(DR.domElement);
