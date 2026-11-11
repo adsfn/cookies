@@ -299,7 +299,7 @@ body.dopen>header,body.dopen #stage,body.dopen .info{opacity:0!important;transit
 .dv-mc{display:block;margin-top:10px;font-size:.85em;font-weight:500;color:var(--muted)}
 .dv-mc b{font-size:1em}
 @media(max-width:699px){
-  .rg{grid-template-columns:1fr}
+  .rg{grid-template-columns:minmax(0,1fr)}
   .ri li b{flex:0 0 auto;min-width:7em;white-space:nowrap;font-size:.95rem}
 }
 @media(hover:hover){
@@ -488,6 +488,7 @@ a.brand:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
 .ck-need ul,.ck-gl ul{list-style:none;margin:0;padding:0}
 .ck-need li{display:flex;gap:16px;align-items:baseline;padding:13px 0;border-top:1px solid var(--line);font-size:1.05rem}
 .ck-need li b,.ck-gl .tk b{flex:0 0 8.5em;font-weight:600;font-variant-numeric:tabular-nums}
+.tk span{min-width:0;overflow-wrap:anywhere}
 .ck-gl{margin-top:clamp(24px,4vh,36px)}
 .ck-gl .rh{margin-bottom:6px}
 .ck-gl .rh h3{margin:0}
