@@ -29,7 +29,7 @@
 <link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=DM+Sans:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500..700&family=DM+Sans:wght@400;600&display=swap">
 <style>
 :root{--bg:#fbf3e6;--ink:#3b2418;--muted:#7a5b48;--line:#e4cfb2;--acc:#e8b36a;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 /* always the night bake, whatever the system preference */
@@ -277,6 +277,9 @@ body.dopen>header,body.dopen #stage,body.dopen .info{opacity:0!important;transit
 .sw span{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .sw b{font:700 1.45rem/1.15 Fraunces,Georgia,serif;margin:4px 0 0}
 .sw i{font-style:normal;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--dacc);color:#3b2418;margin:14px 0;font-size:.95rem}
+.sw i .ico{width:16px;height:16px;vertical-align:0}
+.ico{width:1.05em;height:1.05em;vertical-align:-.17em;flex:none}
+.nav button .ico,.dtop button .ico{display:block;width:20px;height:20px;margin:auto}
 .sw p{margin:14px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:.95rem;color:var(--muted);line-height:1.5}
 .nu-n{margin:20px 0 0;font-size:.8rem;color:var(--muted)}
 /* dietary: four answers in words, then what the recipe contains */
@@ -307,6 +310,7 @@ body.dopen>header,body.dopen #stage,body.dopen .info{opacity:0!important;transit
   .oc.in:hover{transform:translateY(-6px)}
 }
 .nav button:focus-visible,.dtop button:focus-visible,.oc:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+a.brand{padding-block:9px;margin-block:-9px}
 a.brand{color:inherit;text-decoration:none;border-radius:6px;-webkit-tap-highlight-color:transparent;transition:opacity .2s}
 @media(hover:hover){
   a.brand:hover{opacity:.7}
@@ -588,7 +592,7 @@ h1,h3,h4,.ab-lead,.dt{text-wrap:balance}
   .nav .seer{padding:0 16px}
 }
 .rm li::before{color:color-mix(in srgb,var(--dacc) 50%,var(--ink))!important;filter:none!important}
-.hl{padding:12px 4px}
+.hl{padding:14px 6px;margin:-2px -2px}
 .ft ul{list-style:none;gap:0}
 .ft li a,.ft-brand p a{display:inline-block;padding:12px 0 12px;background-position:0 calc(100% - 9px)}
 .sc{padding:3px}
@@ -625,12 +629,12 @@ h1,h3,h4,.ab-lead,.dt{text-wrap:balance}
   <div class="info-body" id="info">
     <h1 id="name"></h1><p class="tag" id="tag"></p><div class="pills" id="pills"></div>
   </div>
-  <div class="nav"><button id="prev" aria-label="Previous cookie">←</button><button type="button" class="seer" id="seer">See the recipe</button><button id="next" aria-label="Next cookie">→</button></div>
+  <div class="nav"><button id="prev" aria-label="Previous cookie"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><button type="button" class="seer" id="seer">See the recipe</button><button id="next" aria-label="Next cookie"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
 </section>
 </main>
 <p class="corner rv" style="--d:.2s">© 2026 Crumb &amp; Co.</p>
-<div class='detail' id='detail' role='dialog' aria-modal='true' aria-labelledby='dT' aria-hidden='true'><div class='dtop'><button id='dback' aria-label='Back to all cookies'>←</button><a class='brand home' href='./' aria-label='Crumb &amp; Co. home'>Crumb &amp; Co.</a></div><button type='button' class='rp' id='jr'>Jump to recipe ↓</button><div id='dbody'></div></div>
-<div class='detail' id='about' aria-hidden='true' role='dialog' aria-label='About Crumb &amp; Co.'><div class='dtop'><button id='aback' aria-label='Back to all cookies'>←</button><a class='brand home' href='./' aria-label='Crumb &amp; Co. home'>Crumb &amp; Co.</a></div><div id='abody'></div></div>
+<div class='detail' id='detail' role='dialog' aria-modal='true' aria-labelledby='dT' aria-hidden='true'><div class='dtop'><button id='dback' aria-label='Back to all cookies'><svg class='ico' viewBox='0 0 24 24' aria-hidden='true' fill='none' stroke='currentColor' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M19 12H5M11 6l-6 6 6 6'/></svg></button><a class='brand home' href='./' aria-label='Crumb &amp; Co. home'>Crumb &amp; Co.</a></div><button type='button' class='rp' id='jr'>Jump to recipe <svg class='ico' viewBox='0 0 24 24' aria-hidden='true' fill='none' stroke='currentColor' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 5v14M6 13l6 6 6-6'/></svg></button><div id='dbody'></div></div>
+<div class='detail' id='about' aria-hidden='true' role='dialog' aria-label='About Crumb &amp; Co.'><div class='dtop'><button id='aback' aria-label='Back to all cookies'><svg class='ico' viewBox='0 0 24 24' aria-hidden='true' fill='none' stroke='currentColor' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M19 12H5M11 6l-6 6 6 6'/></svg></button><a class='brand home' href='./' aria-label='Crumb &amp; Co. home'>Crumb &amp; Co.</a></div><div id='abody'></div></div>
 <div class='ck' id='cook' role='dialog' aria-modal='true' aria-labelledby='ckT' hidden><div class='ck-top'><button type='button' class='ck-x' id='ckX'>Exit</button><div class='ck-ttl'><b id='ckT'></b><small id='ckS'></small></div><span class='ck-wake' id='ckW' hidden>Screen stays on</span></div><div class='ck-bar' id='ckBar' aria-hidden='true'></div><div class='ck-body' id='ckB'></div><div class='ck-nav'><button type='button' class='ck-p' id='ckP'>Back</button><button type='button' class='ck-nx' id='ckN'>Next step</button></div></div><div class='tmd' id='tmd' role='region' aria-label='Kitchen timers'></div><div class='lderr' id='lderr' role='status' hidden><span>The 3D cookies didn’t load.</span><button type='button' id='lderrB'>Reload</button></div><p class='vh' id='tmL' aria-live='polite'></p>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js'></script>
@@ -866,7 +870,7 @@ function scName(n,a,s){if(s===1)return n;const c=pn(a.split(' · ')[0].trim());n
  if(!isNaN(c)){const v=c*s;if(v>1)n=n.replace(/^(large egg|lemon)\b/,'$1s');else n=n.replace(/^(limes|ripe bananas)\b/,w=>w.slice(0,-1));if(v%1&&/^large egg/.test(n))n+=' (whisk it, then use half)'}return n}
 /* scale amounts written in swap text: "1 tbsp ground flax + 3 tbsp water", "1 large egg" */
 const scTxt=(t,s)=>s===1?t:t.replace(/(\d*[⅛¼⅓⅜½⅝⅔¾⅞]?) (tbsp|tsp)\b/g,(q,num,u)=>num?sp1(num+' '+u,s,true):q).replace(/\b(\d+) large egg\b/,(q,c)=>{const v=c*s;return fq(v,'½')+' large egg'+(v>1?'s':'')+(v%1?' (whisk it, then use half)':'')});
-const swList=(x,s)=>x.r.w.map(a=>`<div class='fu in'><span>Instead of</span><b>${a[0]}</b><i aria-hidden='true'>↓</i><span>Try</span><b>${scTxt(a[1],s)}</b><p>${scTxt(a[2],s)}</p></div>`).join('');
+const swList=(x,s)=>x.r.w.map(a=>`<div class='fu in'><span>Instead of</span><b>${a[0]}</b><i aria-hidden='true'><svg class='ico' viewBox='0 0 24 24' aria-hidden='true' fill='none' stroke='currentColor' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 5v14M6 13l6 6 6-6'/></svg></i><span>Try</span><b>${scTxt(a[1],s)}</b><p>${scTxt(a[2],s)}</p></div>`).join('');
 const swLbl=s=>s===1?'':' · '+(s<1?'½':s+'×')+' batch';
 /* tick-off state per recipe, kept on this device so a baker can leave and come back */
 let TKS={};try{TKS=JSON.parse(localStorage.getItem('crumb-ticks'))||{}}catch(e){}
@@ -900,7 +904,8 @@ document.addEventListener('click',e=>{const b=e.target.closest('.sc button');if(
  setTimeout(()=>{ul.innerHTML=ingList(x,s);ul.querySelectorAll('li').forEach(li=>li.classList.add('fu','in'));sec.querySelector('.mk-n').textContent=mk(x,s);sw.innerHTML=swList(x,s);requestAnimationFrame(()=>{ul.classList.remove('sw8');rc.classList.remove('sw8');sw.classList.remove('sw8')})},180)});
 document.addEventListener('keydown',e=>{const b=e.target.closest&&e.target.closest('.sc button');if(!b||!['ArrowLeft','ArrowRight'].includes(e.key))return;e.preventDefault();const bs=[...b.parentNode.children],j=bs.indexOf(b)+(e.key==='ArrowRight'?1:-1),t=bs[(j+bs.length)%bs.length];t.focus();t.click()});
 /* recipe-page footer */
-const foot=i=>`<footer class='ft'><div class='ft-top'><div class='ft-brand'><span class='brand'>Crumb &amp; Co.</span><p>Healthier cookies you can bake at home, with simple ingredients and no fuss.</p><p><a href='#about'>About us</a></p></div><nav aria-label='All recipes'><h4>Recipes</h4><ul>${C.map((c,j)=>`<li><a href='#${sl(c.n)}'${j===i?" aria-current='page'":''}>${c.n}</a></li>`).join('')}</ul></nav><div><h4>Good to know</h4><p>Nutrition values are approximate, per cookie.</p><p>3D cookie model by TiraArt on Sketchfab.</p></div></div><div class='ft-bot'><span>© 2026 Crumb &amp; Co.</span><button type='button' class='ft-up'>Back to top ↑</button></div></footer>`;
+const foot=i=>`<footer class='ft'><div class='ft-top'><div class='ft-brand'><span class='brand'>Crumb &amp; Co.</span><p>Healthier cookies you can bake at home, with simple ingredients and no fuss.</p><p><a href='#about'>About us</a></p></div><nav aria-label='All recipes'><h4>Recipes</h4><ul>${C.map((c,j)=>`<li><a href='#${sl(c.n)}'${j===i?" aria-current='page'":''}>${c.n}</a></li>`).join('')}</ul></nav><div><h4>Good to know</h4><p>Nutrition values are approximate, per cookie.</p><p>3D cookie model by TiraArt on Sketchfab.</p></div></div><div class='ft-bot'><span>© 2026 Crumb &amp; Co.</span><button type='button' class='ft-up'>Back to top <svg class='ico' viewBox='0 0 24 24' aria-hidden='true' fill='none' stroke='currentColor' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 19V5M6 11l6-6 6 6'/></svg></button></div></footer>`;
+const JRL=document.getElementById('jr').innerHTML;
 document.addEventListener('click',e=>{const b=e.target.closest('.ft-up');if(!b)return;const pg=b.closest('.detail');if(!pg)return;
  /* jump most of the way instantly, then glide the last stretch, so long pages don't take ages */
  if(matchMedia('(prefers-reduced-motion:reduce)').matches){pg.scrollTop=0;return}pg.scrollTop=Math.min(pg.scrollTop,innerHeight*1.2);requestAnimationFrame(()=>pg.scrollTo({top:0,behavior:'smooth'}))});
@@ -920,7 +925,7 @@ document.addEventListener('click',e=>{if(e.target.closest('#jr')){if($('jr').dat
  if(e.target.closest('#seer')&&active>-1)location.hash=sl(C[active].n)});
 /* the pill reads "Jump to recipe" until the recipe is on screen, then "Start cooking", and steps aside after the method */
 function rpUpd(){const d=$('detail'),r=$('recipe'),b=$('jr');if(!r)return;const sT=d.scrollTop,vh=innerHeight,top=r.offsetTop,st=sT>top+r.offsetHeight-vh*.55?'gone':sT>top-vh*.6?'cook':'jump';
- if(b.dataset.st===st)return;b.dataset.st=st;b.classList.toggle('gone',st==='gone');if(st!=='gone')b.textContent=st==='cook'?'Start cooking':'Jump to recipe ↓'}
+ if(b.dataset.st===st)return;b.dataset.st=st;b.classList.toggle('gone',st==='gone');if(st!=='gone')b.innerHTML=st==='cook'?'Start cooking':JRL}
 $('detail').addEventListener('scroll',rpUpd,{passive:true});
 /* tick rows */
 document.addEventListener('click',e=>{const b=e.target.closest('[data-tk]');if(b&&dOpen>-1){const t=b.dataset.tk[0],j=+b.dataset.tk.slice(1);tkSet(t,j,b.getAttribute('aria-pressed')!=='true');return}
